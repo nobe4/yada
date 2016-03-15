@@ -1,0 +1,49 @@
+#!/bin/zsh
+set -e
+
+cd "$(dirname "$0")/.."
+DOTFILES_ROOT=$(pwd -P)
+
+# link file and backup if needed
+link(){
+  local src=$1
+  local dst="$2/$(basename "${src%.*}")"
+
+  # Backup the existing link
+  if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
+  then
+    mv "$dst" "${dst}.backup.$(date +%s)"
+  fi
+
+  # Link the file
+  ln -fs "$src" "$dst"
+}
+
+# List configuration file
+list(){
+  find -H "$DOTFILES_ROOT" -type f -name $1 -not -path '*.yada*'
+}
+
+# Run the install files
+for install_file in $(list 'install')
+do
+  /bin/zsh $install_file
+done
+
+# Link the bin files
+# If bin folder doesn't exist, create it
+if [ ! -d  "$DOTFILES_ROOT/.yada/bin" ]; then
+  mkdir -p "$DOTFILES_ROOT/.yada/bin"
+fi
+
+# Don't forget to add the $DOTFILES_ROOT/.yada/bin to your path
+for bin_file in $(list '*.bin')
+do
+  link $bin_file "$DOTFILES_ROOT/.yada/bin"
+done
+
+# Link the zsh files to $HOME
+for link_file in $(list '*.link')
+do
+  link $link_file "$HOME"
+done
