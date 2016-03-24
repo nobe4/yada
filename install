@@ -12,7 +12,11 @@ link(){
   # Backup the existing link
   if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
   then
-    mv "$dst" "${dst}.backup.$(date +%s)"
+    # If the existing destination does not link to the current source, backup it
+    if ! [ "$src" = "$(readlink $dst)" ]
+    then
+      mv "$dst" "${dst}.backup.$(date +%s)"
+    fi
   fi
 
   # Link the file
