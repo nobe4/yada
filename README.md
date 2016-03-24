@@ -1,4 +1,4 @@
-# yada
+# [YADA](https://github.com/nobe4/yada)
 Yet Another Dotfiles Arranger
 
 # Installation
