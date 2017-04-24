@@ -29,7 +29,7 @@ It follows roughly the same principles:
 
 That's all. Now, depending on your preferences, you may want to setup a `.zshrc`
 sourcing all `*.zsh`, adding the `.yada/bin` folder to your path like in [this
-file]().
+file](https://github.com/nobe4/dotfiles/blob/master/zsh/.zshrc.link).
 
 By default, and for the seek of simplicity, during the link step, if a file
 already exists, it backups it with another name, so you can manage by hand
@@ -75,7 +75,7 @@ e.g.
 
   The structure follows the same as Holman's one, so you can clearly inspire
   yourslef with this
-  [.zshrc.symlink](https://github.com/holman/dotfiles/blob/master/zsh/zshrc.symlink).
+  [.zshrc.symlink](https://github.com/holman/dotfiles/blob/master/zsh/zshrc.symlink) or [my .zshrc.link]((https://github.com/nobe4/dotfiles/blob/master/zsh/.zshrc.link).
   I don't want to add this file into the yada project because you may not want
   it, it really depends on your needs.
 
