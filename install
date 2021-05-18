@@ -1,5 +1,5 @@
 #!/bin/zsh
-set -e
+set -xe
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
